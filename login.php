@@ -1,52 +1,92 @@
-<!-- login form page has appropriate error messages for invalid user/passwords
-if users are logged in and try to access this page they're redirected to the 
-home page instead -->
+<?php
+include_once 'header.php';
+require_once 'includes/functions.inc.php';
 
+if (isNone()) {
+    header("location: index.php");
+}
+if (isConsumer()) {
+    header("location: consumer_dashboard.php");
+}
+if (isBroker()) {
+    header("location: broker_dashboard.php");
+}
+if (isAdmin()) {
+    header("location: admin_dashboard.php");
+}
 
+?>
 
-<!DOCTYPE html>
-<html lang="en">
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <h1>Log into your account</h1>
+    <div class="form-signin w-100 m-auto">
+        <form action="includes/login.inc.php" method="post" style="max-width: 500px;"> <!-- action="includes/login.inc.php" is where user will be sent to when form submitted, using post method to hide sensitive data in URL but will still be passed-->
+            <h2 class="h3 mb-3 fw-normal">Consumers</h2>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/46894f4043.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="assets/images/logo.png">
-</head>
-
-<body class="login login-body">
-    <div class="container">
-        <form action="includes/login.inc.php" method="post" class="form" id="login">
-            <h1 class="form__title">Login</h1>
-
-            <?php
-            if (isset($_GET['error'])) {
-                if ($_GET['error'] == "emptyfields") {
-                    echo '<div class="form__message form__message--error"> Fill in all fields! </div>';
-                } else if ($_GET['error'] == "nouser") {
-                    echo '<div class="form__message form__message--error"> User does not exist! </div>';
-                } else if ($_GET['error'] == "wrongpwd") {
-                    echo '<div class="form__message form__message--error"> Wrong password! </div>';
-                }
-            }
-            ?>
-            <div class="form__input-group">
-                <input type="text" name="mailuid" class="form__input" placeholder="Username..."><br>
-                <input type="password" name="pwd" class="form__input" placeholder="Password..."><br>
-                <button type="submit" name="login-submit" class="form__button">Login</button><br>
-                <br>
-                <p class="form__text">
-                    <a href="signup.php" class="form__link">Don't have an account? Create account</a>
-                </p>
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="consumer_email">
+                <label for="floatingInput">Email address ("example@mail.com")</label>
             </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="consumer_password">
+                <label for="floatingPassword">Password</label>
+                <br>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit" name="consumer_login_submit">Sign in</button>
+        </form>
+        <?php
+        # error-handling messages
+        # GET to check for data we can see
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == "emptyinput") {
+                echo "<p>Log in failed, missing fields.</p>";
+            }
+            if ($_GET["error"] == "wronglogin") {
+                echo "<p>Log in failed, incorrect login credentials.</p>";
+            }
+        }
+        ?>
+        <br>
+        <a href=register.php> Don't have an account? Create one here </a> 
+        <br>
+        <br>
+        <form action="includes/login.inc.php" method="post" style="max-width: 500px;"> <!-- action="includes/login.inc.php" is where user will be sent to when form submitted, using post method to hide sensitive data in URL but will still be passed-->
+            <h2 class="h3 mb-3 fw-normal">Brokers</h2>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="broker_email">
+                <label for="floatingInput">Email address ("example@mail.com")</label>
+                
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="broker_password">
+                <label for="floatingPassword">Password</label>
+                <br>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit" name="broker_login_submit">Sign in</button>
+        </form>
+
+        <br>
+        <br>
+        <form action="includes/login.inc.php" method="post" style="max-width: 500px;"> <!-- action="includes/login.inc.php" is where user will be sent to when form submitted, using post method to hide sensitive data in URL but will still be passed-->
+            <h2 class="h3 mb-3 fw-normal">Admins</h2>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="admin_email">
+                <label for="floatingInput">Email address ("example@mail.com")</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="admin_password">
+                <label for="floatingPassword">Password</label>
+                <br>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit" name="admin_login_submit">Sign in</button>
         </form>
     </div>
-</body>
+</main>
 
-</html>
+
+<script src="assets/js/bootstrap.bundle.min.js"></script>

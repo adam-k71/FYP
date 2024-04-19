@@ -1,6 +1,19 @@
 <?php
-session_start();
-include "functions.php";
+include_once 'header.php';
+if (empty($_GET['status'])) {
+	session_destroy();
+	header('Location:index.php?status=1');
+	exit;
+}
+if (isConsumer()) {
+	header("location: consumer_dashboard.php");
+}
+if (isBroker()) {
+	header("location: broker_dashboard.php");
+}
+if (isAdmin()) {
+	header("location: admin_dashboard.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,126 +46,30 @@ include "functions.php";
 	</button>
 	<!-- Scroll to top ends -->
 
-	<!-- Navigation starts -->
-	<nav>
-		<div class="menu-container nav-wrapper">
-
-
-			<div class="hamberger">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-
-			<ul class="nav-list">
-				<?php
-				// admin navbar
-				if (isset($_SESSION['userId'])) {
-					if ($_SESSION['UserLevel'] == USER_LEVEL_ADMIN) {
-						echo '
-                        <li><a href="index.php">Home</a></li>
-				<li><a href="about.php">About</a></li>
-				<li>
-					<a href="insurance.php">Insurance</a>
-					<ul class="dropdown-list">
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-					</ul>
-				</li>
-				<li><a href="news.php">News</a></li>
-				<li><a href="contact.php">Contacts</a></li>
-				<li><a href="admin.php" class="navbar__links"> Admin </a></li>
-				<li>
-                        <form action="includes/logout.inc.php" method="post" class="navbar__btn">
-                        <button type="submit" name="logout-submit" class="btn btn-blue">Logout</button>
-                        </form>';
-					}
-					// logged in
-					else {
-						echo '
-                        <li><a href="index.php">Home</a></li>
-				<li><a href="about.php">About</a></li>
-				<li>
-					<a href="insurance.php">Insurance</a>
-					<ul class="dropdown-list">
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-					</ul>
-				</li>
-				<li><a href="news.php">News</a></li>
-				<li><a href="contact.php">Contacts</a></li>
-				<li>
-                        <form action="includes/logout.inc.php" method="post" class="navbar__btn">
-                        <button type="submit" name="logout-submit" class="btn btn-blue">Logout</button>
-                        </form>';
-					}
-				}
-				// logged out 
-				else {
-					echo '
-                    <li class="navbar__item">
-                    <a href="index.php" class="navbar__links"> Home </a>
-                    </li>
-					<li><a href="about.php">About Us</a></li>
-                    <li>
-					<a href="insurance.php">Insurance</a>
-					<ul class="dropdown-list">
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-						<li><a href="insurance-details.php">Auto Policy</a></li>
-					</ul>
-				</li>
-				<li><a href="news.php">News</a></li>
-
-                    <li class="navbar__item">
-                    <a href="contact.php" class="navbar__links" target="_blank"> Contact </a>
-                    </li>
-                    <li class="navbar__btn">
-                    <a href="login.php" class="button"> Login </a>
-                    </li>
-                        ';
-				}
-				?>
-			</ul>
-		</div>
-	</nav>
-	<!-- Navigation ends -->
-
-
 	<!-- Hero section starts -->
 	<section class="hero">
 		<div class="hero-container">
 			<div class="row">
 				<div class="col hero-content">
 					<h2 class="hero-heading white">
-						Insurance for your Vehicles
+						Find the best Insurance
 					</h2>
 					<p class="para-line white">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus perspiciatis vero libero,
-						aliquam necessitatibus soluta neque, alias repudiandae.
+						Speak to one of our professionals or view our products and find what suits you best.
 					</p>
 					<div class="inner-row">
 						<div class="inner-col">
 							<button class="btn btn-full-w btn-blue">
-								<a href="contact.php">Talk to a Specialist</a>
+								<a href=>Talk to a Specialist</a>
 							</button>
 						</div>
 						<div class="inner-col">
 							<button class="btn btn-full-w btn-yellow">
-								<a href="insurance.php">View our Services</a>
+								<a href=>View our Services</a>
 							</button>
 						</div>
 					</div>
 				</div>
-				<div class="col hero-blank-col"></div>
 			</div>
 		</div>
 	</section>
@@ -167,31 +84,29 @@ include "functions.php";
 					<h4 class="sub-heading">Why choose us</h4>
 
 					<h2 class="heading">
-						Reason to choose us 1
+						Top Security System
 					</h2>
 
 					<p class="para-line">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Accusamus perspiciatis vero libero, aliquam necessitatibus soluta neque, alias repudiandae.
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Accusamus perspiciatis vero libero, aliquam necessitatibus soluta neque, alias repudiandae.
+						Our system is built with security at its forefront, ensuring all your personal data is kept
+						safe.
 					</p>
 
 					<div class="inner-row why-us-row">
 						<div class="inner-col why-us-col">
 							<h3 class="why-us-highlight-heading">
-								Reason 2
+								24/7 Support
 							</h3>
 							<p class="para-line">
-								Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+								Support is always avaiable 24/7.
 							</p>
 						</div>
 						<div class="inner-col why-us-col">
 							<h3 class="why-us-highlight-heading">
-								Reason 3
+								We're not theives
 							</h3>
 							<p class="para-line">
-								Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+								We won't steal, sell or use any of your data.
 							</p>
 						</div>
 					</div>
@@ -228,37 +143,37 @@ include "functions.php";
 				</div>
 				<div class="service">
 					<ion-icon name="car-sport-outline"></ion-icon>
-					<h2 class="service-heading">Health</h2>
+					<h2 class="service-heading">Vehicle</h2>
 					<p class="para-line">
-						View all available health policies.
+						Insure any type of vehicle and find what suits you.
 					</p>
 				</div>
 				<div class="service">
 					<ion-icon name="car-sport-outline"></ion-icon>
-					<h2 class="service-heading">Travel</h2>
+					<h2 class="service-heading">Vehicle</h2>
 					<p class="para-line">
-						View all available travel policies.
+						Insure any type of vehicle and find what suits you.
 					</p>
 				</div>
 				<div class="service">
 					<ion-icon name="car-sport-outline"></ion-icon>
-					<h2 class="service-heading">Auto</h2>
+					<h2 class="service-heading">Vehicle</h2>
 					<p class="para-line">
-						View all our available policies for any type of vehicle.
+						Insure any type of vehicle and find what suits you.
 					</p>
 				</div>
 				<div class="service">
 					<ion-icon name="car-sport-outline"></ion-icon>
-					<h2 class="service-heading">Auto</h2>
+					<h2 class="service-heading">Vehicle</h2>
 					<p class="para-line">
-						View all our available policies for any type of vehicle.
+						Insure any type of vehicle and find what suits you.
 					</p>
 				</div>
 				<div class="service">
 					<ion-icon name="car-sport-outline"></ion-icon>
-					<h2 class="service-heading">Auto</h2>
+					<h2 class="service-heading">Vehicle</h2>
 					<p class="para-line">
-						View all our available policies for any type of vehicle.
+						Insure any type of vehicle and find what suits you.Ï
 					</p>
 				</div>
 			</div>
@@ -316,7 +231,7 @@ include "functions.php";
 			</div>
 
 			<button class="btn btn-yellow">
-				<a href="insurance.php">All Our Policies</a>
+				<a href=>All Our Policies</a>
 			</button>
 		</div>
 	</section>
@@ -352,7 +267,7 @@ include "functions.php";
 					</div>
 
 					<button class="btn btn-blue btn-full-w">
-						<a href="about.php">Read More</a>
+						<a href=>Read More</a>
 					</button>
 				</div>
 				<div class="col">
@@ -421,8 +336,8 @@ include "functions.php";
 				<div class="col">
 					<div class="lead-form agent-card">
 						<img src="img/client.png" alt="Agent" title="Agent" class="agent-img">
-						<h3 class="agent-name">Agent 1</h3>
-						<p class="para-line">Insurance Agent</p>
+						<h3 class="agent-name">Broker 1</h3>
+						<p class="para-line">Insurance Broker</p>
 						<h6 class="agent-number">
 							<ion-icon name="call-outline"></ion-icon> (012) 1234-567-890
 						</h6>
