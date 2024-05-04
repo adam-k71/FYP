@@ -12,7 +12,7 @@ if (isBroker()) {
 	header("location: broker_dashboard.php");
 }
 if (isAdmin()) {
-	header("location: admin_dashboard.php");
+	header("location: admin‎ dashboard♠.php");
 }
 ?>
 

@@ -12,7 +12,7 @@ if (isBroker()) {
     header("location: broker_dashboard.php");
 }
 if (isAdmin()) {
-    header("location: admin_dashboard.php");
+    header("location: admin‎ dashboard♠.php");
 }
 
 ?>
@@ -37,7 +37,6 @@ if (isAdmin()) {
         </form>
         <?php
         # error-handling messages
-        # GET to check for data we can see
         if (isset($_GET["error"])) {
             if ($_GET["error"] == "emptyinput") {
                 echo "<p>Log in failed, missing fields.</p>";

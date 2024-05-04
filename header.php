@@ -98,9 +98,9 @@ include 'includes/functions.inc.php';
                     if (isset($_SESSION['session_id'])) {
                         if ($_SESSION['session_user_level'] === user_level_admin) {
                             echo "<li class='nav-item'>
-                            <a class='nav-link' href='admin_dashboard.php'>
+                            <a class='nav-link' href='admin‎ dashboard♠.php'>
                                 <span class='align-text-bottom'></span>
-                                Dashboard
+                                Your Dashboard
                             </a>
                         </li>
                         <li class='nav-item'>
@@ -111,15 +111,15 @@ include 'includes/functions.inc.php';
                         </li>";
                         } else if ($_SESSION['session_user_level'] === user_level_broker) {
                             echo "<li class='nav-item'>
-                            <a class='nav-link' href='broker_dashboard.php'>
+                            <a class='nav-link' href='broker_dashboard♠.php'>
                                 <span class='align-text-bottom'></span>
-                                Dashboard
+                                Your Dashboard
                             </a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='broker_booking.php'>
                                 <span class='align-text-bottom'></span>
-                                Appointments
+                                Your Appointments
                             </a>
                         </li>
                         <li class='nav-item'>
@@ -132,25 +132,25 @@ include 'includes/functions.inc.php';
                             echo "<li class='nav-item'>
                             <a class='nav-link' href='consumer_dashboard.php'>
                                 <span class='align-text-bottom'></span>
-                                Dashboard
+                                Your Dashboard
                             </a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='consumer_booking.php'>
                                 <span class='align-text-bottom'></span>
-                                Appointments
+                                Your Appointments
                             </a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='quote.php'>
                                 <span class='align-text-bottom'></span>
-                                Quotes
+                                Get A Quote
                             </a>
                         </li>
                         <li class='nav-item'>
                         <a class='nav-link' href='product.php'>
                             <span class='align-text-bottom'></span>
-                            Products
+                            All Our Policies
                         </a>
                     </li>
                         <li class='nav-item'>
@@ -170,7 +170,7 @@ include 'includes/functions.inc.php';
                     <li class='nav-item'>
                         <a class='nav-link' href='product.php'>
                             <span class='align-text-bottom'></span>
-                            Products
+                            All Policies
                         </a>
                     </li>
                     <li class='nav-item'>
@@ -182,7 +182,7 @@ include 'includes/functions.inc.php';
                     <li class='nav-item'>
                         <a class='nav-link' href='Register.php'>
                             <span class='align-text-bottom'></span>
-                            Register
+                            Register Account
                         </a>
                     </li>";
                     }

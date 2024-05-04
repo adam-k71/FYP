@@ -11,7 +11,7 @@ if (isBroker()) {
     header("location: broker_dashboard.php");
 }
 if (isAdmin()) {
-    header("location: admin_dashboard.php");
+    header("location: admin‎ dashboard♠.php");
 }
 
 ?>
@@ -45,7 +45,7 @@ if (isAdmin()) {
             <button class="w-100 btn btn-lg btn-primary" type="submit" name="register-submit">Register</button>
             <br>
             <br>
-            <a href=login.php> Already have an account? Login here </a> 
+            <a href=Iogin.php> Already have an account? Login here </a> 
         </form>
 
         <?php
